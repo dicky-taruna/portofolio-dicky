@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dicky Taruna | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0b0f19;
+      color:#ffffff;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+      radial-gradient(circle at top left,#1e3a8a33,transparent 25%),
+      radial-gradient(circle at bottom right,#0ea5e933,transparent 25%);
+      z-index:-1;
+    }
+
+    .container{
+      width:90%;
+      max-width:1300px;
+      margin:auto;
+    }
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(10,10,20,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-content{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:1.2rem;
+      font-weight:800;
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#cbd5e1;
+      font-size:0.95rem;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#38bdf8;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding-top:120px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:10px 18px;
+      background:rgba(14,165,233,0.15);
+      border:1px solid rgba(14,165,233,0.3);
+      border-radius:999px;
+      color:#38bdf8;
+      font-size:0.9rem;
+      margin-bottom:25px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      line-height:1.1;
+      font-weight:900;
+      margin-bottom:25px;
+    }
+
+    .gradient{
+      background:linear-gradient(to right,#38bdf8,#818cf8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#94a3b8;
+      line-height:1.9;
+      font-size:1.05rem;
+      margin-bottom:35px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#0ea5e9,#6366f1);
+      color:white;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(14,165,233,0.4);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.12);
+      color:white;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.05);
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      padding:35px;
+      backdrop-filter:blur(18px);
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .profile-card{
+      position:relative;
+    }
+
+    .profile-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:28px;
+      padding:1px;
+      background:linear-gradient(135deg,#38bdf8,#6366f1);
+      -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+    }
+
+    .profile-card h3{
+      font-size:1.5rem;
+      margin-bottom:20px;
+    }
+
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
+
+    .info div{
+      padding:15px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.04);
+    }
+
+    section{
+      padding:100px 0;
+    }
+
+    .section-title{
+      font-size:2.5rem;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .section-subtitle{
+      color:#94a3b8;
+      margin-bottom:60px;
+      max-width:700px;
+      line-height:1.8;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+
+    .skill-card{
+      padding:30px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.3s;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-8px);
+      border-color:#38bdf8;
+    }
+
+    .skill-card h4{
+      margin-bottom:20px;
+      font-size:1.2rem;
+    }
+
+    .skill-card ul{
+      list-style:none;
+    }
+
+    .skill-card li{
+      margin-bottom:12px;
+      color:#cbd5e1;
+      font-size:0.95rem;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:30px;
+    }
+
+    .timeline-item{
+      padding:35px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.3s;
+    }
+
+    .timeline-item:hover{
+      transform:translateX(8px);
+      border-color:#818cf8;
+    }
+
+    .timeline-item h3{
+      margin-bottom:8px;
+      font-size:1.4rem;
+    }
+
+    .timeline-item span{
+      color:#38bdf8;
+      font-size:0.95rem;
+      display:block;
+      margin-bottom:18px;
+    }
+
+    .timeline-item p{
+      color:#cbd5e1;
+      line-height:1.8;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      padding:35px;
+      border-radius:28px;
+      background:linear-gradient(
+      145deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.03)
+      );
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+      border-color:#38bdf8;
+    }
+
+    .project-card::before{
+      content:"";
+      position:absolute;
+      width:200px;
+      height:200px;
+      background:#38bdf822;
+      border-radius:50%;
+      top:-60px;
+      right:-60px;
+      filter:blur(40px);
+    }
+
+    .project-card h3{
+      font-size:1.4rem;
+      margin-bottom:15px;
+    }
+
+    .project-card p{
+      color:#cbd5e1;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:60px 0;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:#94a3b8;
+    }
+
+    @media(max-width:900px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .section-title{
+        font-size:2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">DICKY TARUNA</div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="badge">
+          AI & Infrastructure Specialist
+        </div>
+
+        <h1>
+          Building <span class="gradient">AI Automation</span>,
+          Infrastructure & Smart Systems
+          for Modern Business
+        </h1>
+
+        <p>
+          IT professional specializing in AI automation, infrastructure,
+          networking, and intelligent system integration. Experienced in
+          developing scalable solutions using AI, automation workflow,
+          computer vision, and enterprise IT operations.
+          <br><br>
+          Because apparently modern companies now expect one IT person to
+          manage servers, AI, CCTV, networking, printers, automation,
+          and somehow still fix Excel yang “tiba-tiba rusak sendiri”.
+        </p>
+
+        <div class="buttons">
+          <a href="#" class="btn btn-primary">View Portfolio</a>
+          <a href="#" class="btn btn-secondary">Download CV</a>
+        </div>
+      </div>
+
+      <div class="card profile-card">
+
+        <h3>Professional Overview</h3>
+
+        <div class="info">
+
+          <div>
+            <strong>Role</strong><br>
+            IT AI & Automation Engineer
+          </div>
+
+          <div>
+            <strong>Specialization</strong><br>
+            Infrastructure, Networking & AI Systems
+          </div>
+
+          <div>
+            <strong>Company</strong><br>
+            PT Metaphor Indonesia
+          </div>
+
+          <div>
+            <strong>Certification</strong><br>
+            MTCNA • BNSP Program Analyst
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">
+        About Me
+      </h2>
+
+      <p class="section-subtitle">
+        Lulusan Sistem Informasi dengan pengalaman dalam pengembangan
+        AI automation, IT infrastructure, networking, dan enterprise system.
+        Fokus pada implementasi teknologi yang practical, scalable,
+        dan benar-benar dipakai perusahaan. Tidak sekadar dashboard mahal
+        yang akhirnya cuma dibuka pas meeting direksi.
+      </p>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+
+      <h2 class="section-title">
+        Core Expertise
+      </h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <h4>AI & Automation</h4>
+
+          <ul>
+            <li>OpenAI Integration</li>
+            <li>N8N Automation</li>
+            <li>Custom GPT Development</li>
+            <li>YOLO Camera Vision</li>
+            <li>AI Reporting System</li>
+            <li>Google Apps Script</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Infrastructure</h4>
+
+          <ul>
+            <li>MikroTik Networking</li>
+            <li>Windows Server</li>
+            <li>NAS QNAP</li>
+            <li>CCTV Management</li>
+            <li>Hardware Troubleshooting</li>
+            <li>Network Monitoring</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Development</h4>
+
+          <ul>
+            <li>Python & YAML</li>
+            <li>PHP Laravel</li>
+            <li>JavaScript</li>
+            <li>AppSheet</li>
+            <li>MySQL Database</li>
+            <li>API Integration</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Work Experience
+      </h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h3>PT Metaphor Indonesia</h3>
+          <span>IT AI Staff | 2024 - Present</span>
+
+          <p>
+            Managing enterprise infrastructure, AI automation,
+            networking systems, server monitoring, and intelligent
+            business workflow integration across multiple divisions.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>PT Priority Banking School Indonesia</h3>
+          <span>Freelance Facilitator | 2023</span>
+
+          <p>
+            Provided IT operational support and technical assistance
+            during educational activities and system operations.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>PT Digital Nayaka Abhinaya</h3>
+          <span>Front End Developer Intern | 2022</span>
+
+          <p>
+            Developed company profile website and supported internal
+            IT troubleshooting operations.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="projects">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Featured Projects
+      </h2>
+
+      <div class="projects">
+
+        <div class="project-card">
+          <h3>RISWAN</h3>
+
+          <p>
+            AI automation reporting system for omnichannel sales data
+            processing integrated with OpenAI API and intelligent analytics.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>M-CAMVISION</h3>
+
+          <p>
+            AI-based inventory detection system using computer vision
+            and object recognition for warehouse monitoring.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>METAPHOR OVERTIME</h3>
+
+          <p>
+            Employee overtime application using Google AppSheet with
+            automation reporting and integrated spreadsheet management.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="container">
+
+      <h3>Dicky Taruna</h3>
+      <br>
+
+      <p>
+        IT AI & Automation Engineer • Infrastructure Specialist
+      </p>
+
+      <br>
+
+      <p>
+        dickyalonso@gmail.com • Bekasi, Indonesia
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
